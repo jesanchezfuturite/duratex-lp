@@ -1,0 +1,280 @@
+/* Google Fonts: Montserrat (Headings) & Roboto (Body) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  /* Brand Colors Extracted from duratexmx.com */
+  --brand-primary: #2b5672;
+  /* The primary blue/teal */
+  --brand-primary-hover: #1e3d52;
+  --brand-secondary: #f4f6f8;
+  /* Light gray for sections */
+  --brand-dark: #151414;
+  /* Dark for footer/overlays */
+  --brand-accent: #116dff;
+  /* Accent blue if needed */
+
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--brand-dark);
+}
+
+/* Custom Utilities Overrides */
+.text-primary {
+  color: var(--brand-primary) !important;
+}
+
+.bg-primary {
+  background-color: var(--brand-primary) !important;
+}
+
+.bg-light-blue {
+  background-color: #f0f4f8;
+  /* Very light version of primary */
+}
+
+.btn-primary {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  /* Slightly square for industrial feel */
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: var(--brand-primary-hover) !important;
+  border-color: var(--brand-primary-hover) !important;
+  box-shadow: 0 4px 12px rgba(43, 86, 114, 0.3);
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--brand-primary);
+  padding: 1rem 0;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  background-image: url('https://picsum.photos/id/1015/1920/1080');
+  /* Temporary industrial-ish placeholder */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 120px 0;
+  text-align: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(21, 20, 20, 0.75);
+  /* Dark overlay */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  color: white;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  font-size: 3rem;
+}
+
+.hero-content p.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.25rem;
+  }
+}
+
+/* Section Titles */
+.section-title {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.section-title h2 {
+  color: var(--brand-primary);
+}
+
+/* Category Cards */
+.category-card {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.category-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/4;
+  /* Vertical rectangles */
+  object-fit: cover;
+  margin-bottom: 1.25rem;
+  border-radius: 4px;
+}
+
+.category-card h3 {
+  font-size: 1.25rem;
+  color: var(--brand-primary);
+  margin-bottom: 0.5rem;
+}
+
+.category-card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Personaliza tu pedido Section */
+.customization-section {
+  background-color: var(--brand-secondary);
+  padding: 5rem 0;
+}
+
+.customization-card {
+  text-align: center;
+  margin-bottom: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  height: 100%;
+  /* Equal height */
+}
+
+.customization-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/5;
+  /* Vertical rectangles like original images */
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+}
+
+.customization-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* Por qué elegirnos */
+.why-us-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.why-us-item {
+  margin-bottom: 1.5rem;
+}
+
+.why-us-item h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.why-us-item p {
+  color: #555;
+  margin-bottom: 0;
+}
+
+/* Guarantee Banner */
+.guarantee-banner {
+  background-color: var(--brand-primary);
+  color: white;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.guarantee-banner h2 {
+  color: white;
+  margin-bottom: 0;
+  font-weight: 700;
+}
+
+/* Contact Form */
+.contact-section {
+  padding: 5rem 0;
+  background-color: #fff;
+}
+
+.form-control,
+.form-select {
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 0.25rem rgba(43, 86, 114, 0.25);
+}
+
+.form-label {
+  font-weight: 500;
+  color: #444;
+}
+
+/* Invalid form state feedback */
+.is-invalid {
+  border-color: #dc3545 !important;
+}
+
+/* Footer / Thank you page tweaks */
+.thank-you-wrapper {
+  min-height: calc(100vh - 70px);
+  /* Adjust for navbar height approx */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--brand-secondary);
+}
+
+.thank-you-card {
+  background: white;
+  padding: 3rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  width: 100%;
+}
+
+.thank-you-icon {
+  font-size: 4rem;
+  color: var(--brand-primary);
+  margin-bottom: 1.5rem;
+}
