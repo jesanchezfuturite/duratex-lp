@@ -278,3 +278,33 @@ h6 {
   color: var(--brand-primary);
   margin-bottom: 1.5rem;
 }
+
+/* Footer */
+.footer {
+  background-color: var(--brand-dark);
+  color: #fff;
+  padding: 4rem 0 2rem;
+  font-size: 0.95rem;
+}
+
+.footer h5 {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.footer a:hover {
+  opacity: 1;
+}
+
+.footer-logo {
+  height: 40px;
+  margin-bottom: 1rem;
+}

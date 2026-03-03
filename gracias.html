@@ -14,6 +14,18 @@
 
 <body>
 
+    <!-- Security Check: Prevent Direct Access -->
+    <script>
+        if (sessionStorage.getItem('formSubmitted') !== 'true') {
+            window.location.href = 'index.html';
+        }
+
+        // Opcional: limpiar la bandera una vez que se carga la página para no permitir reloads en el futuro
+        // Si el usuario recarga, se devolverá al inicio. Si prefieres que el usuario
+        // pueda recargar la página de gracias temporalmente, puedes comentar la siguiente línea.
+        sessionStorage.removeItem('formSubmitted');
+    </script>
+
     <!-- Header / Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container d-flex justify-content-center">
@@ -45,6 +57,40 @@
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6">
+                    <img src="https://static.wixstatic.com/media/da305d_9ef8af0e39094762b3a1e3dd857070a4~mv2.png/v1/fill/w_213,h_38,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/duratex%20blanco.png"
+                        alt="Duratex Logo" class="footer-logo">
+                    <p class="text-white-50 mt-3">Fabricación directa de uniformes y soluciones de mayoreo para cada
+                        tipo de empresa. Calidad garantizada.</p>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="mb-3">Contacto</h5>
+                    <ul class="list-unstyled text-white-50">
+                        <li class="mb-2">📍 Monterrey, N.L., México</li>
+                        <li class="mb-2">📧 ventas@duratexmx.com</li>
+                        <li class="mb-2">📱 +52 (81) 0000 0000</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <h5 class="mb-3">Enlaces Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html">Inicio</a></li>
+                        <li class="mb-2"><a href="#">Aviso de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-4 pt-4 border-top border-secondary">
+                <div class="col-12 text-center text-white-50 col-md-6 text-md-start">
+                    <p class="mb-0">&copy; 2026 Duratex. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 </body>
 

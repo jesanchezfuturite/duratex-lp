@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 1. SMOOTH SCROLL PARA BOTONES CTA ---
     const scrollTriggers = document.querySelectorAll('.js-scroll-trigger');
     scrollTriggers.forEach(trigger => {
-        trigger.addEventListener('click', function(e) {
+        trigger.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
-            
+
             if (targetElement) {
                 // Offset para el navbar fixed (apróx 70px)
                 const offset = 70;
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             'mensaje': {
                 required: false, // Opcional
-                validate: () => true 
+                validate: () => true
             }
         }
     };
@@ -70,11 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 3. LOGICA DEL FORMULARIO ---
     const quoteForm = document.getElementById('quoteForm');
-    
+
     if (quoteForm) {
-        quoteForm.addEventListener('submit', function(e) {
+        quoteForm.addEventListener('submit', function (e) {
             e.preventDefault(); // Detenemos el envío nativo
-            
+
             let isValid = true;
             const formData = new FormData(quoteForm);
             const dataObj = {};
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Limpiamos estados visuales previos
             Object.keys(formConfig.fields).forEach(id => {
                 const element = document.getElementById(id);
-                if(element) element.classList.remove('is-invalid');
+                if (element) element.classList.remove('is-invalid');
             });
 
             // Validamos cada campo según la configuración
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isValid) {
                 const submitBtn = document.getElementById('submitBtn');
                 const originalText = submitBtn.innerText;
-                
+
                 // Mostrar estado de carga (UX)
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
@@ -126,6 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Simulación de delay de red por 1 segundo, luego redirección
                 setTimeout(() => {
                     console.log('Datos validados y listos para enviar:', dataObj);
+
+                    // Bandera de seguridad para gracias.html
+                    sessionStorage.setItem('formSubmitted', 'true');
+
                     // Redirección exitosa (Pixel tracking compatible)
                     window.location.href = 'gracias.html';
                 }, 1000);
@@ -139,12 +143,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // EventListeners para limpiar el "is-invalid" al escribir/cambiar
         Object.keys(formConfig.fields).forEach(id => {
             const element = document.getElementById(id);
-            if(element) {
+            if (element) {
                 element.addEventListener('input', () => {
-                   element.classList.remove('is-invalid'); 
+                    element.classList.remove('is-invalid');
                 });
                 element.addEventListener('change', () => {
-                   element.classList.remove('is-invalid'); 
+                    element.classList.remove('is-invalid');
                 });
             }
         });
