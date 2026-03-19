@@ -210,6 +210,42 @@ h6 {
   margin-bottom: 0;
 }
 
+/* Beneficios Section */
+.benefits-section {
+  background-color: var(--brand-secondary);
+}
+
+.benefit-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  height: 100%;
+  box-shadow: 0 4px 15px rgba(37, 55, 141, 0.08);
+  border-bottom: 4px solid var(--brand-primary);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(37, 55, 141, 0.15);
+}
+
+.benefit-icon {
+  font-size: 2.75rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+  color: var(--brand-primary);
+}
+
+.benefit-card p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 0;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
 /* Logos Carousel */
 .logos-carousel-section {
   background-color: #fff;
