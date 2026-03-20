@@ -75,6 +75,15 @@ document.addEventListener('DOMContentLoaded', () => {
         quoteForm.addEventListener('submit', function (e) {
             e.preventDefault(); // Detenemos el envío nativo
 
+            // --- UTM: Captura de parámetros de campaña ---
+            var data_utm = {};
+            const urlParams = new URLSearchParams(window.location.search);
+            ['utm_id', 'utm_campaign', 'utm_source', 'utm_medium', 'utm_content', 'utm_term'].forEach(p => {
+                const v = urlParams.get(p);
+                if (v) data_utm[p] = v;
+            });
+            console.log('UTM params:', data_utm);
+
             let isValid = true;
             const formData = new FormData(quoteForm);
             const dataObj = {};
@@ -107,33 +116,74 @@ document.addEventListener('DOMContentLoaded', () => {
                 const submitBtn = document.getElementById('submitBtn');
                 const originalText = submitBtn.innerText;
 
-                // Mostrar estado de carga (UX)
+                const nombre = quoteForm.querySelector("input[name='nombre']").value.trim();
+                const correo = quoteForm.querySelector("input[name='email']").value.trim();
+                const telefono = quoteForm.querySelector("input[name='telefono']").value.trim();
+                const empresa = quoteForm.querySelector("input[name='empresa']").value.trim();
+                const sector = quoteForm.querySelector("select[name='sector']").value;
+                const volumen = quoteForm.querySelector("select[name='volumen']").value;
+                const mensaje = quoteForm.querySelector("textarea[name='mensaje']").value.trim();
+
+                const data = {
+                    nombre: nombre,
+                    correo: correo,
+                    telefono: telefono,
+                    empresa: empresa,
+                    sector: sector,
+                    volumen: volumen,
+                    mensaje: mensaje,
+                    utm_id: data_utm.utm_id || "",
+                    utm_campaign: data_utm.utm_campaign || "",
+                    utm_source: data_utm.utm_source || "",
+                    utm_medium: data_utm.utm_medium || "",
+                    utm_content: data_utm.utm_content || "",
+                    utm_term: data_utm.utm_term || "",
+                    api_key: "Q2xpZW50ZUlEOjo0MTg=",
+                    to: ["adminmty@duratex.mx", "leads@futurite.net"],
+                    origen: "https://uniformes.duratexmx.com/"
+                };
+
+                // Deshabilitar botón y mostrar spinner
                 submitBtn.disabled = true;
+                const originalHTML = submitBtn.innerHTML;
                 submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
 
-                // Aquí conectarías con tu procesar.php real usando fetch()
-                /*
-                fetch('procesar.php', {
+                // Envío con fetch (JSON).
+                fetch('https://futurite.ongoing.mx/api/leads/add', {
                     method: 'POST',
-                    body: formData
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
                 })
-                .then(response => {
-                    if(response.ok) { window.location.href = 'gracias.html'; }
-                })
-                .catch(error => console.error(error));
-                */
-
-                // Simulación de delay de red por 1 segundo, luego redirección
-                setTimeout(() => {
-                    console.log('Datos validados y listos para enviar:', dataObj);
-
-                    // Bandera de seguridad para gracias.html
-                    sessionStorage.setItem('formSubmitted', 'true');
-
-                    // Redirección exitosa (Pixel tracking compatible)
-                    window.location.href = 'gracias.html';
-                }, 1000);
-
+                    .then(response => {
+                        // Guardamos el status HTTP para usarlo como respaldo
+                        const httpOk = response.ok; // true si status 200-299
+                        return response.text().then(rawText => {
+                            console.log('Respuesta API (raw):', rawText);
+                            let result = {};
+                            try { result = JSON.parse(rawText); } catch (_) { }
+                            console.log('Respuesta API (parsed):', result);
+                            return { httpOk, result };
+                        });
+                    })
+                    .then(({ httpOk, result }) => {
+                        // Redirigimos si el HTTP fue exitoso (200-299) O si la API devuelve success:true
+                        if (httpOk || result.success === true) {
+                            quoteForm.reset();
+                            sessionStorage.setItem('formSubmitted', 'true');
+                            window.location.href = 'gracias.html';
+                        } else {
+                            console.warn('API devolvió error:', result);
+                            alert('Ha ocurrido un error al enviar la forma de contacto, intenta más tarde');
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = originalHTML;
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Error envío:', err);
+                        alert('No fue posible enviar la solicitud. Intenta más tarde.');
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalHTML;
+                    });
             } else {
                 // Hay errores, el form ha marcado los campos en rojo (.is-invalid)
                 console.log('Formulario inválido. Corrige los campos marcados.');
