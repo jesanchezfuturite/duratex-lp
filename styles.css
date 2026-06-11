@@ -394,3 +394,36 @@ h6 {
   height: 40px;
   margin-bottom: 1rem;
 }
+
+/* ==========================================
+   WhatsApp Floating Button Style
+   ========================================== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 35px;
+  left: 40px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  text-decoration: none;
+  font-family: var(--font-body);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.whatsapp-icon-container {
+  width: 55px;
+  height: 55px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover .whatsapp-icon-container {
+  transform: scale(1.1);
+}
