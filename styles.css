@@ -135,10 +135,31 @@ h6 {
   margin-bottom: 2.5rem;
 }
 
+.hero-wholesale-note {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: -1.5rem;
+  margin-bottom: 1rem;
+}
+
 @media (max-width: 768px) {
   .hero-content h1 {
     font-size: 2.25rem;
   }
+}
+
+/* Wholesale Banner */
+.wholesale-banner {
+  background-color: var(--brand-primary);
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.wholesale-banner p {
+  color: white;
+  font-weight: 600;
+  margin: 0;
+  font-size: 1.4rem;
 }
 
 /* Section Titles */
